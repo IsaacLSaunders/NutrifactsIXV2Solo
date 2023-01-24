@@ -2,13 +2,12 @@
 import React from 'react';
 import { useEffect } from 'react';
 import '../App.scss';
-import { Grid, Paper } from '@mui/material';
+import { Grid } from '@mui/material';
 
 //Import Components
 import RecipeCard from './RecipeCards.jsx';
-import { recipeActions, syncRecipes } from '../store/recipes-slice';
+import { syncRecipes } from '../store/recipes-slice';
 import { useSelector, useDispatch } from 'react-redux';
-// import DoughnutChart from './Components/ChartJS/PieChart.jsx';
 
 
 const RecipeContainer = () => {
@@ -25,12 +24,6 @@ const RecipeContainer = () => {
 		const name = recipe.name;
 		const query = recipe.query;
 		const ingredientList = JSON.parse(recipe.data);
-		// for (const ingredient of ingredientList) {
-		// 	const { food_name, serving_qty, serving_unit, nf_calories, nf_protein, nf_total_carbohydrates, nf_total_fat} = ingredient;
-		// 	console.log(ingredient)
-		// 	const thumbUrl = ingredient.photo.thumb;
-		// 	const highResUrl = ingredient.photo.highres;
-		// }
 		recipeList.push(
 		<Grid key={recipe._id} item>
 			<RecipeCard  id={recipe._id} name={name} ingredientList={ingredientList} query={query}/>

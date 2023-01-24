@@ -1,23 +1,19 @@
 //Import dependencies
-import { FormControl, InputLabel, Input, TextField, FormHelperText, FormLabel } from '@mui/material';
+import { TextField } from '@mui/material';
 import React, { useState } from 'react';
 import '../App.scss';
 import { Box } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { editRecipe, deleteRecipe, syncRecipes } from '../store/recipes-slice';
 import { useDispatch } from 'react-redux';
 
-// import canvas from 'canvas';
-
 //import components
 import IngredientsList from './IngredientsList.jsx';
 import ChartContainer from './ChartContainer.jsx';
-import DoughnutChart from './ChartJS/PieChart.jsx';
 
 const RecipeCard = (props) => {
 	const dispatch = useDispatch();
@@ -60,7 +56,10 @@ const RecipeCard = (props) => {
 			<CardActions>
 				<Box sx={{ width: '100%', display: 'flex' }}>
 					<Box sx={{ flexGrow: 1 }}>
-						<Button variant='outlined' size='large' onClick={editBtnHandler}>
+						<Button 
+							variant='outlined' 
+							size='large' 
+							onClick={editBtnHandler}>
 							Edit
 						</Button>
 					</Box>
@@ -68,8 +67,7 @@ const RecipeCard = (props) => {
 						<Button
 							variant='outlined'
 							size='large'
-							onClick={() => dispatch(deleteRecipe(props.id)).then(() => dispatch(syncRecipes()))}
-						>
+							onClick={() => dispatch(deleteRecipe(props.id)).then(() => dispatch(syncRecipes()))}>
 							Delete
 						</Button>
 					</Box>
@@ -91,7 +89,7 @@ const RecipeCard = (props) => {
 						onChange={(e) => editRecipeNameHandler(e.target.value)}
 					/>
 			</Typography>
-			<ChartContainer ingredientList={props.ingredientList} />
+			{/* <ChartContainer ingredientList={props.ingredientList} /> */}
 			<CardContent>
 				<TextField
 					fullWidth
@@ -109,13 +107,12 @@ const RecipeCard = (props) => {
 				<Box sx={{ width: '100%', display: 'flex', alignContent: 'space-between'}}>
 					<Box sx={{ flexGrow: 1 }}>
 						<Button
-					variant='outlined'
-					size='large'
-					onClick={() =>
-						dispatch(editRecipe(editBody))
-							.then(() => dispatch(syncRecipes()))
-							.then(() => submitBtnHandler())}
-						>
+							variant='outlined'
+							size='large'
+							onClick={() =>
+								dispatch(editRecipe(editBody))
+									.then(() => dispatch(syncRecipes()))
+									.then(() => submitBtnHandler())}>
 							Submit
 						</Button>
 					</Box>
@@ -123,8 +120,9 @@ const RecipeCard = (props) => {
 						<Button
 							variant='outlined'
 							size='large'
-							onClick={() => dispatch(deleteRecipe(props.id)).then(() => dispatch(syncRecipes()))}
-						>
+							onClick={() => 
+								dispatch(deleteRecipe(props.id))
+									.then(() => dispatch(syncRecipes()))}>
 							Delete
 						</Button>
 					</Box>
@@ -132,8 +130,7 @@ const RecipeCard = (props) => {
 						<Button
 							variant='outlined'
 							size='large'
-							onClick={() => submitBtnHandler()}
-						>
+							onClick={() => submitBtnHandler()}>
 							Close
 						</Button>
 					</Box>

@@ -15,7 +15,7 @@ export const syncRecipes = createAsyncThunk(
 		try {
 			console.log('in the syncRecipes Thunk function');
 			const response = await axios.get('/recipes');
-			// console.log('Here is your data: ', response);
+			console.log('Here is your data: ', response.data);
 			return response.data.reverse();
 		} catch (e) {
 			console.log(e);
@@ -27,8 +27,8 @@ export const editRecipe = createAsyncThunk(
 	'/recipes/editRecipeStatus',
 	async (editBody) => {
 		try {
-			console.log('editBody',editBody);
-				console.log("in the editRecipes Thunk function");
+					console.log('editBody',editBody);
+					console.log("in the editRecipes Thunk function");
 			const editRecipe = fetch('/recipes', {
         method: "PUT",
         headers: {
@@ -36,7 +36,7 @@ export const editRecipe = createAsyncThunk(
         },
         body: JSON.stringify(editBody),
       });
-						console.log("out of the editRecipes Thunk function", editRecipe);
+					console.log("out of the editRecipes Thunk function", editRecipe);
 			return editRecipe.status;
 		} catch (e) {
 			console.log(e);
@@ -83,9 +83,6 @@ const recipeReducer = createSlice({
 	name: 'recipes',
 	initialState: initialRecipesState,
 	reducers: {
-		// setRecipe(state, action) {
-		//   state.recipes.push(action.payload)
-		// },
 		setRecipes(state, action) {
 			console.log(action.payload);
 			state.recipes = action.payload;
@@ -105,7 +102,6 @@ const recipeReducer = createSlice({
 	extraReducers: (builder) => {
 		builder.addCase(syncRecipes.fulfilled, (state, action) => {
 			console.log('In builder ');
-			// console.log(action.payload.data);
 			state.recipes = action.payload;
 		});
 	},

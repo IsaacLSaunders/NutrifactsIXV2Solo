@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, Input, TextField, FormHelperText, FormLabel, Typography, Button, Card, Grid } from '@mui/material'
+import { FormControl, TextField, Typography, Button, Card } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
@@ -23,37 +23,25 @@ const body = {
 					query: newIngredientsList,
 				}
 
-	const clearFields = () => {
-		dispatch(recipeActions.setRecipeName(''));
-		dispatch(recipeActions.setIngredientList(''));
-	}
-
-
 	return (
 		<Card variant='outlined' sx={{ p: 2}}>
 
 			<FormControl sx={{width: '100%'}}>
 				<Box container sx={{display: 'flex'}}>
 
-				<Typography variant='h4'>add recipe here</Typography>
+				<Typography variant='h4'>Add Recipe Here</Typography>
 				<TextField
 					required
 					label="Name"
-					// id="fullWidth"
 					sx={{ mx: 2 }}
 					value={newRecipeName}
 					onChange={(e) => recipeNameHandler(e.target.value)}
 				/>
 				<Box sx={{ mr: 2, flexGrow: 1}}>
 				<TextField
-					// fullWidth 
 					required
 					label="Ingredients"
-					// id="fullWidth" 
 					sx={{ width: '100%' }}
-					// flex={1}
-					// multiline={true} 
-					// rows={11}
 					value={newIngredientsList}
 					onChange={(e) => ingredientsListHandler(e.target.value)}
 				/>
